@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>METHOD</title>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <style>
+        /* ══════════════════════════════════════════
+           RESET & TOKENS
+        ══════════════════════════════════════════ */
+        :root {
+            --color-100: hsla(0,0%,100%,1);
+            --color-80: hsla(0,0%,100%,.8);
+            --color-60: hsla(0,0%,100%,.6);
+            --color-45: hsla(0,0%,100%,.45);
+            --color-30: hsla(0,0%,100%,.3);
+            --color-10: hsla(0,0%,100%,.1);
+            --color-07: hsla(0,0%,100%,.07);
+            --color-05: hsla(0,0%,100%,.05);
+
+            --bg-main: #111;
+            --bg-card: #181818;
+            --bg-card-light: #1F1F1F;
+
+            --red: #E63329;
+            --red-hover: #ff3b30;
+
+            --header-h: 64px;
+            --header-h-mob: 56px;
+            --container-max: 1172px;
+            --container-px: 16px;
+
+            --font: 'Manrope', sans-serif;
+            --ease: .18s cubic-bezier(.4,0,.2,1);
+            --ease-mid: .28s cubic-bezier(.4,0,.2,1);
+
+            --gap-section: clamp(52px, 12vw, 120px);
+            --radius: 10px;
+            --radius-lg: 16px;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-main);
+            color: var(--color-100);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ul, ol { list-style: none; }
+        button, a { border: none; background: none; color: inherit; text-decoration: none; cursor: pointer; font-family: var(--font); }
+        img { display: block; max-width: 100%; height: auto; }
+
+
+        /* ══════════════════════════════════════════
+           UTILITIES
+        ══════════════════════════════════════════ */
+        .container {
+            max-width: var(--container-max);
+            margin-inline: auto;
+            padding-inline: var(--container-px);
+        }
+
+        /* Gradient text — horizontal (hero heading) */
+        .text-grad-h {
+            background: linear-gradient(90deg, #fff 20%, rgba(255,255,255,.6) 97%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Gradient text — vertical (stat numbers) */
+        .text-grad-v {
+            background: linear-gradient(180deg, #fff 30%, rgba(255,255,255,.4) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Primary button */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background: var(--red);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            transition: background var(--ease);
+        }
+        .btn-primary:hover { background: var(--red-hover); }
+
+        /* Typography */
+        .text-64 { font-weight: 600; font-size: clamp(36px,6vw,56px); line-height: 1.1; letter-spacing: -.03em; }
+        .text-40 { font-weight: 600; font-size: clamp(28px,4vw,40px); line-height: 1.15; letter-spacing: -.03em; }
+        .text-big { font-weight: 600; font-size: clamp(48px,7vw,72px); line-height: 1; letter-spacing: -.03em; }
+        .text-body { font-weight: 400; font-size: 16px; line-height: 1.5; }
+        .text-sm { font-weight: 400; font-size: 14px; line-height: 1.4; }
+
+
+        /* ══════════════════════════════════════════
+           HEADER
+        ══════════════════════════════════════════ */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-main);
+            border-bottom: 1px solid var(--color-10);
+        }
+
+        .header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-h);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .logo__text {
+            font-weight: 800;
+            font-size: 18px;
+            letter-spacing: .12em;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .nav-desktop {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 12px;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--color-80);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: color var(--ease);
+        }
+        .nav-btn:hover { color: #fff; }
+
+        .nav-btn .chev {
+            opacity: .55;
+            flex-shrink: 0;
+            transition: transform var(--ease-mid);
+        }
+
+        .header__right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
+        .btn-contacts {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-30);
+            border-radius: 8px;
+            padding: 10px 22px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            transition: background var(--ease), border-color var(--ease);
+        }
+        .btn-contacts:hover { background: var(--color-05); border-color: var(--color-60); }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 5px;
+            width: 36px;
+            height: 36px;
+            padding: 6px;
+        }
+        .burger span {
+            display: block;
+            height: 2px;
+            background: var(--color-80);
+            border-radius: 2px;
+            transition: width var(--ease), background var(--ease);
+        }
+        .burger span:nth-child(1),
+        .burger span:nth-child(2) { width: 22px; }
+        .burger span:nth-child(3) { width: 16px; }
+        .burger:hover span { background: #fff; }
+        .burger:hover span:nth-child(3) { width: 22px; }
+
+
+        /* ══════════════════════════════════════════
+           DROPDOWN
+        ══════════════════════════════════════════ */
+        .dropdown { position: relative; }
+
+        .dropdown__panel {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-6px);
+            min-width: 220px;
+            background: var(--bg-card);
+            border: 1px solid var(--color-10);
+            border-radius: var(--radius);
+            padding: 6px 0;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity var(--ease-mid), transform var(--ease-mid), visibility var(--ease-mid);
+            z-index: 200;
+        }
+
+        .dropdown__panel::after {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: 0;
+            right: 0;
+            height: 16px;
+        }
+        .dropdown__panel::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(45deg);
+            width: 10px;
+            height: 10px;
+            background: var(--bg-card);
+            border-left: 1px solid var(--color-10);
+            border-top: 1px solid var(--color-10);
+        }
+
+        .dropdown:hover > .dropdown__panel {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown:hover > .nav-btn .chev { transform: rotate(180deg); }
+
+        .dropdown__title {
+            padding: 6px 18px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--color-30);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+        .dropdown__link {
+            display: block;
+            padding: 9px 18px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-60);
+            white-space: nowrap;
+            transition: color var(--ease), background var(--ease);
+        }
+        .dropdown__link:hover { color: #fff; background: var(--color-05); }
+        .dropdown__link.--active { color: #fff; }
+
+        /* Lang — right-aligned */
+        .dropdown.--lang .dropdown__panel { left: auto; right: 0; transform: translateY(-6px); min-width: 160px; }
+        .dropdown.--lang .dropdown__panel::before { left: auto; right: 18px; transform: rotate(45deg); }
+        .dropdown.--lang:hover > .dropdown__panel { transform: translateY(0); }
+
+
+        /* ══════════════════════════════════════════
+           MOBILE MENU
+        ══════════════════════════════════════════ */
+        .mob-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 300;
+            background: var(--bg-main);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            visibility: hidden;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease, visibility .35s;
+        }
+        .mob-menu.--open { visibility: visible; opacity: 1; transform: translateX(0); }
+
+        .mob-menu__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: var(--header-h-mob);
+            padding: 0 16px;
+            border-bottom: 1px solid var(--color-07);
+            flex-shrink: 0;
+        }
+
+        .mob-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            transition: background var(--ease);
+        }
+        .mob-close:hover { background: var(--color-05); }
+
+        .mob-menu__nav { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+        .mob-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            border: none;
+            border-bottom: 1px solid var(--color-07);
+            text-align: left;
+            transition: background var(--ease);
+        }
+        .mob-nav-link:hover { background: var(--color-05); }
+        .mob-nav-link .chev { opacity: .45; flex-shrink: 0; transition: transform var(--ease-mid); }
+        .mob-nav-link.--expanded .chev { transform: rotate(180deg); }
+
+        .mob-accordion__body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+            background: rgba(0,0,0,.15);
+        }
+        .mob-accordion__body.--open { max-height: 600px; }
+
+        .mob-sub-link {
+            display: block;
+            padding: 12px 20px 12px 36px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--color-45);
+            transition: color var(--ease), background var(--ease);
+        }
+        .mob-sub-link:hover { color: #fff; background: var(--color-05); }
+
+        .mob-menu__bottom {
+            padding: 16px 20px 24px;
+            border-top: 1px solid var(--color-07);
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .mob-cta-contacts {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 24px;
+            border: 1px solid var(--color-30);
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            transition: background var(--ease), border-color var(--ease);
+        }
+        .mob-cta-contacts:hover { background: var(--color-05); border-color: var(--color-60); }
+        .mob-cta-consult {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 14px 24px;
+            background: var(--red);
+            border-radius: var(--radius);
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            transition: background var(--ease);
+        }
+        .mob-cta-consult:hover { background: var(--red-hover); }
+
+
+        /* ══════════════════════════════════════════
+           RESPONSIVE HEADER (unavoidable @media)
+        ══════════════════════════════════════════ */
+        @media (max-width: 1023px) {
+            .header__inner { height: var(--header-h-mob); }
+            .nav-desktop { display: none; }
+            .burger { display: flex; }
+            .logo__text { font-size: 15px; }
+            .logo svg { width: 22px; height: 19px; }
+            .nav-btn { padding: 8px 6px; font-size: 14px; }
+        }
+        @media (max-width: 767px) {
+            .header .btn-contacts { display: none; }
+        }
+
+
+        /* ══════════════════════════════════════════
+           MAIN LAYOUT
+        ══════════════════════════════════════════ */
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap-section);
+            overflow: hidden;
+            width: 100%;
+        }
+        main section { width: 100%; }
+
+
+        /* ══════════════════════════════════════════
+           HERO
+        ══════════════════════════════════════════ */
+        .hero {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: clamp(32px, 5vw, 48px);
+            margin-top: clamp(24px, 7vw, 72px);
+        }
+
+        .hero__text {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 32px;
+            text-align: center;
+        }
+
+        .hero__actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--color-10);
+            background: linear-gradient(170deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+            backdrop-filter: blur(27px);
+            -webkit-backdrop-filter: blur(27px);
+        }
+
+        .hero__btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            background: var(--red);
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            transition: background var(--ease);
+        }
+        .hero__btn-primary:hover { background: var(--red-hover); }
+
+        .hero__btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 12px 24px 12px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            transition: background var(--ease);
+        }
+        .hero__btn-secondary:hover { background: var(--color-05); }
+        .hero__btn-secondary svg { flex-shrink: 0; }
+
+        .hero__visual { position: relative; z-index: 1; width: 100%; }
+        .hero__visual picture { display: flex; justify-content: center; }
+        .hero__img { width: 100%; }
+
+        /* Hero mobile — can't avoid @media for layout shift */
+        @media (max-width: 767px) {
+            .hero__heading { font-size: clamp(32px, 9vw, 42px); }
+            .hero__actions {
+                width: 100%;
+                border: none;
+                background: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                padding: 0;
+            }
+            .hero__visual {margin-top: -80px;}
+            .hero__btn-primary { width: 100%; padding: 16px 24px; border-radius: 12px; font-size: 17px; }
+            .hero__btn-secondary { display: none; }
+            .hero__fade { margin-top: -20px; }
+            .hero__fade img { min-width: 800px; }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .hero__img { max-width: 800px; }
+            .hero__fade { margin-top: -200px; }
+        }
+
+
+        /* ══════════════════════════════════════════
+           STATS
+        ══════════════════════════════════════════ */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .stats__item {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: clamp(20px, 3vw, 32px) 0;
+        }
+
+        .stats__label { color: var(--color-60); }
+
+        /* Stats mobile borders — grid handles columns, only borders need @media */
+        @media (max-width: 767px) {
+            .stats__item { align-items: flex-start; border-bottom: 1px solid var(--color-10); }
+            .stats__item:last-child { border-bottom: none; }
+        }
+
+
+        /* ══════════════════════════════════════════
+           WHY
+        ══════════════════════════════════════════ */
+        .why {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: clamp(32px, 4vw, 64px);
+        }
+
+        .why__card {
+            flex: 1 1 400px;
+            background-image: url('background.png');
+            background-size: cover;
+            background-position: center;
+            border: 1px solid var(--color-10);
+            border-radius: var(--radius-lg);
+            padding: clamp(24px, 3vw, 32px);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow: hidden;
+        }
+
+        .why-card__header { display: flex; align-items: center; justify-content: space-between; }
+        .why-card__title { font-weight: 600; font-size: 16px; color: var(--color-80); }
+        .why-card__badge { display: flex; align-items: center; gap: 4px; font-weight: 600; font-size: 14px; color: var(--color-45); }
+        .why-card__number { font-weight: 600; font-size: clamp(48px, 5vw, 64px); line-height: 1; letter-spacing: -.03em; color: var(--color-80); }
+        .why-card__subtitle { color: var(--color-45); }
+        .why-card__chart { width: 100%; object-fit: contain; }
+
+        .why-card__labels { display: flex; justify-content: space-between; }
+        .why-card__label { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+        .why-card__label-name { font-weight: 500; font-size: 14px; color: var(--color-80); }
+        .why-card__label-time { font-weight: 400; font-size: 13px; color: var(--color-30); }
+
+        .why__content {
+            flex: 1 1 400px;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(20px, 3vw, 32px);
+        }
+
+        .why__desc { color: var(--color-60); }
+
+        .why__btn { align-self: flex-start; }
+
+        /* Why mobile — only order + button stretch */
+        @media (max-width: 767px) {
+            .why__content { order: -1; }
+            .why__btn { align-self: stretch; text-align: center; }
+        }
+
+
+        /* ══════════════════════════════════════════
+           PRODUCTS
+        ══════════════════════════════════════════ */
+        .products {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .products__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(160px, 32vw, 320px), 1fr));
+            align-items: stretch;
+            gap: 12px;
+
+        }
+
+        .product-card {
+            position: relative;
+            background: var(--bg-card-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+
+        }
+
+        .product-card__header {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 32px 24px 0;
+        }
+
+        .product-card__info {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .product-card__num {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 1;
+            letter-spacing: -.03em;
+            color: var(--red);
+        }
+
+        .product-card__title {
+            font-weight: 600;
+            font-size: clamp(18px, 2vw, 24px);
+            line-height: 1.2;
+            letter-spacing: -.02em;
+            color: white;
+        }
+
+        .product-card__icon {
+            flex: 0;
+            min-width: 24px;
+            aspect-ratio: 1;
+            opacity: .3;
+        }
+
+
+        /* ══════════════════════════════════════════
+           FAQ / SECTORS
+        ══════════════════════════════════════════ */
+        .faq {
+            display: flex;
+            flex-direction: column;
+            gap: 48px;
+        }
+
+        .faq__header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .faq__header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq__subtitle {
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--color-45);
+        }
+
+        .faq__list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        /* Each accordion item wrapper */
+        .faq-item {
+            background: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: background var(--ease);
+        }
+
+        .faq-item:hover {
+            background: var(--color-05);
+        }
+
+        .faq-item details {
+            width: 100%;
+        }
+
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            gap: clamp(12px, 3vw, 24px);
+            padding: clamp(16px, 2.5vw, 24px) clamp(16px, 2vw, 32px);
+            cursor: pointer;
+            list-style: none;
+            user-select: none;
+            transition: background var(--ease);
+        }
+
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::marker { content: ''; }
+
+        .faq-item__num {
+            font-weight: 700;
+            font-size: clamp(24px, 3vw, 32px);
+            line-height: 1;
+            color: var(--red);
+            flex-shrink: 0;
+            min-width: 48px;
+        }
+
+        .faq-item__title {
+            flex: 1;
+            font-weight: 600;
+            font-size: clamp(16px, 1.8vw, 20px);
+            line-height: 1.3;
+            color: var(--color-100);
+        }
+
+        .faq-item__icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            color: var(--color-30);
+            transition: transform var(--ease-mid);
+        }
+
+        .faq-item details[open] .faq-item__icon {
+            transform: rotate(45deg);
+        }
+
+        /* Animated body */
+        .faq-item__body {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .3s ease;
+        }
+
+        .faq-item details[open] + .faq-item__body {
+            grid-template-rows: 1fr;
+        }
+
+        .faq-item__body-inner {
+            overflow: hidden;
+        }
+
+        .faq-item__content {
+            padding: 0 clamp(16px, 2vw, 32px) clamp(16px, 2.5vw, 24px);
+            padding-left: calc(clamp(16px, 2vw, 32px) + clamp(12px, 3vw, 24px) + 48px);
+            color: var(--color-60);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* Mobile: button full-width below list */
+        .faq__btn-mobile {
+            display: none;
+        }
+
+        @media (max-width: 767px) {
+            .faq__header {
+                justify-content: center;
+                text-align: center;
+            }
+
+            .faq__header-text {
+                align-items: center;
+            }
+
+            .faq__header .btn-primary { display: none; }
+            .faq__btn-mobile { display: flex; align-self: stretch; justify-content: center; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container header__inner">
+
+        <a href="/" class="logo">
+            <svg width="28" height="24" viewBox="0 0 26 23" fill="none"><path d="M13 0L25.5 22.5H0.5L13 0Z" fill="#E63329"/></svg>
+            <span class="logo__text">METHOD</span>
+        </a>
+
+        <nav class="nav-desktop">
+            <a href="#" class="nav-btn">Главная</a>
+
+            <div class="dropdown">
+                <div class="nav-btn">О компании <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">О компании</p>
+                    <a href="#" class="dropdown__link">О компании</a>
+                    <a href="#" class="dropdown__link">Наша команда</a>
+                    <a href="#" class="dropdown__link">История</a>
+                    <a href="#" class="dropdown__link">Партнёры</a>
+                    <a href="#" class="dropdown__link">Карьера</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="nav-btn">Услуги <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Услуги</p>
+                    <a href="#" class="dropdown__link">Управление проектной деятельностью</a>
+                    <a href="#" class="dropdown__link">Стратегическое развитие и консалтинг</a>
+                    <a href="#" class="dropdown__link">Оптимизация корпоративных систем</a>
+                    <a href="#" class="dropdown__link">Маркетинг и развитие бренда</a>
+                    <a href="#" class="dropdown__link">Институциональное проектирование</a>
+                    <a href="#" class="dropdown__link">ИИ и аналитика данных</a>
+                    <a href="#" class="dropdown__link">Автоматизация и цифровая трансформация</a>
+                    <a href="#" class="dropdown__link">Управление продажами и коммерческая стратегия</a>
+                    <a href="#" class="dropdown__link">Интеграция технологических решений</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <div class="nav-btn">Сектора экономики <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Сектора</p>
+                    <a href="#" class="dropdown__link">Энергетика</a>
+                    <a href="#" class="dropdown__link">Строительство и инфраструктура</a>
+                    <a href="#" class="dropdown__link">Логистика и транспорт</a>
+                    <a href="#" class="dropdown__link">Промышленность и переработка</a>
+                    <a href="#" class="dropdown__link">Девелопмент и недвижимость</a>
+                    <a href="#" class="dropdown__link">Агропромышленный комплекс</a>
+                    <a href="#" class="dropdown__link">Наука, технологии и инновации</a>
+                    <a href="#" class="dropdown__link">Экология и ресурсоэффективность</a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="header__right">
+            <div class="dropdown --lang">
+                <div class="nav-btn">
+                    <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.3" stroke="currentColor" stroke-width="1.3"/><ellipse cx="10" cy="10" rx="3.1" ry="8.3" stroke="currentColor" stroke-width="1.3"/><path d="M1.7 7h16.6M1.7 13h16.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    <span>Ру</span>
+                    <svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Язык</p>
+                    <a href="#" class="dropdown__link --active">Русский</a>
+                    <a href="#" class="dropdown__link">English</a>
+                    <a href="#" class="dropdown__link">Қазақша</a>
+                </div>
+            </div>
+            <a href="#contacts" class="btn-contacts">Контакты</a>
+            <button class="burger" id="burger-open" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+        </div>
+
+    </div>
+</header>
+
+<div class="mob-menu" id="mob-menu" role="dialog" aria-modal="true" aria-label="Навигация">
+    <div class="mob-menu__top">
+        <a href="/" class="logo"><svg width="22" height="19" viewBox="0 0 22 19" fill="none"><path d="M11 0L21.5 18.5H0.5L11 0Z" fill="#E63329"/></svg><span class="logo__text" style="font-size:15px">METHOD</span></a>
+        <button class="mob-close" id="mob-close" aria-label="Закрыть меню"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <nav class="mob-menu__nav">
+        <a href="#" class="mob-nav-link" data-close>Главная</a>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">О компании <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>О компании</a><a href="#" class="mob-sub-link" data-close>Наша команда</a><a href="#" class="mob-sub-link" data-close>История</a><a href="#" class="mob-sub-link" data-close>Партнёры</a><a href="#" class="mob-sub-link" data-close>Карьера</a>
+            </div>
+        </div>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">Услуги <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>Управление проектами</a><a href="#" class="mob-sub-link" data-close>Стратегический консалтинг</a><a href="#" class="mob-sub-link" data-close>Оптимизация систем</a><a href="#" class="mob-sub-link" data-close>Маркетинг и бренд</a><a href="#" class="mob-sub-link" data-close>Институциональное проектирование</a><a href="#" class="mob-sub-link" data-close>ИИ и аналитика данных</a><a href="#" class="mob-sub-link" data-close>Цифровая трансформация</a><a href="#" class="mob-sub-link" data-close>Управление продажами</a><a href="#" class="mob-sub-link" data-close>Интеграция решений</a>
+            </div>
+        </div>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">Сектора экономики <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>Энергетика</a><a href="#" class="mob-sub-link" data-close>Строительство и инфраструктура</a><a href="#" class="mob-sub-link" data-close>Логистика и транспорт</a><a href="#" class="mob-sub-link" data-close>Промышленность</a><a href="#" class="mob-sub-link" data-close>Девелопмент и недвижимость</a><a href="#" class="mob-sub-link" data-close>Агропромышленный комплекс</a><a href="#" class="mob-sub-link" data-close>Наука и инновации</a><a href="#" class="mob-sub-link" data-close>Экология</a>
+            </div>
+        </div>
+    </nav>
+    <div class="mob-menu__bottom">
+        <a href="#contacts" class="mob-cta-contacts" data-close>Контакты</a>
+        <a href="#contacts" class="mob-cta-consult" data-close>Получить консультацию</a>
+    </div>
+</div>
+
+<main>
+
+    <!-- ═══════════════════════════════════════════
+        HERO SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="container hero__text">
+            <h1 class="text-64 text-grad-h">Корпоративные<br>решения нового уровня</h1>
+            <p class="text-body">Интегрируем стратегию, данные и технологии в единую модель управления</p>
+            <div class="hero__actions">
+                <a href="#contacts" class="hero__btn-primary">Обсудить Проект</a>
+                <a href="#about" class="hero__btn-secondary">О Компании <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 5l7 7-7 7M5 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+        </div>
+        <div class="hero__visual">
+            <picture>
+                <source media="(max-width: 767px)" srcset="hero_m.png"/>
+                <source media="(min-width: 768px)" srcset="hero.png"/>
+                <img src="hero.png" alt="Method — корпоративные решения" class="hero__img"/>
+            </picture>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        STATS SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="container stats" id="stats">
+        <div class="stats__item"><span class="text-big text-grad-v">562</span><span class="text-sm stats__label">Цифровых платформ внедрено</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">993</span><span class="text-sm stats__label">Реализованных проекта</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">97%</span><span class="text-sm stats__label">Успешных внедрений</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">36</span><span class="text-sm stats__label">Стран присутствия</span></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        MAP SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="map" id="map">
+<!--        <picture>-->
+<!--            <source srcset="./map.svg"/>-->
+<!--            <img src="./map.svg" class="map__img"/>-->
+<!--        </picture>-->
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+        WHY SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="container why" id="why">
+        <div class="why__card">
+            <div class="why-card__header">
+                <span class="why-card__title">Workflow</span>
+                <span class="why-card__badge"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 3l4 4M8 3L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>11.5%</span>
+            </div>
+            <div>
+                <div class="why-card__number">3593</div>
+                <p class="text-sm why-card__subtitle">Бизнес-процессов оптимизировано</p>
+            </div>
+            <img src="graph.svg" alt="" class="why-card__chart"/>
+            <div class="why-card__labels">
+                <div class="why-card__label"><span class="why-card__label-name">Анализ</span><span class="why-card__label-time">1 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Стратегия</span><span class="why-card__label-time">1 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Запуск</span><span class="why-card__label-time">4 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Развитие</span><span class="why-card__label-time">6 мес</span></div>
+            </div>
+        </div>
+        <div class="why__content">
+            <h2 class="text-40">Почему Method?</h2>
+            <p class="text-body why__desc">Мы интегратор корпоративных решений, специализирующийся на проектном управлении и стратегическом развитии. Создаём интеллектуальные модели, которые комплексно оптимизируют бизнес — от институциональной архитектуры до операционного управления и эффективности.</p>
+            <a href="#" class="btn-primary why__btn">Подробнее</a>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+        PRODUCTS SECTION
+   ═══════════════════════════════════════════ -->
+    <section class="container products" id="products">
+        <h2 class="text-40 text-grad-h">Ключевые услуги</h2>
+        <div class="products__grid">
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">01</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Управление проектной деятельностью</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/01.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">02</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Стратегическое развитие и консалтинг</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/02.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">03</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Оптимизация корпоративных систем</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/03.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">04</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Маркетинг и развитие бренда</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/04.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">05</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Институциональное проектирование</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/05.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">06</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Искусственный интеллект и аналитика данных</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/06.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">07</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Корпоративное управление и экспертиза</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/07.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">08</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Автоматизация, цифровая трансформация и инновации</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/08.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">09</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Управление продажами и коммерческая стратегия</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/09.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">10</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Интеграция технологических решений</span>
+                </div>
+                <div class="product-card__img"><img src="../../Method-AI/products/10.svg" alt=""/></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        FAQ / SECTORS SECTION
+   ═══════════════════════════════════════════ -->
+    <section class="container faq" id="sectors">
+
+        <div class="faq__header">
+            <div class="faq__header-text">
+                <span class="faq__subtitle">Решения для отраслей</span>
+                <h2 class="text-40">Сектора экономики</h2>
+            </div>
+            <a href="#contacts" class="btn-primary">Получить Консультацию</a>
+        </div>
+
+        <div class="faq__list">
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">01</span>
+                        <span class="faq-item__title">Энергетика</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Оптимизация процессов в энергетическом секторе: от генерации до распределения. Внедрение цифровых решений для повышения эффективности и устойчивости.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">02</span>
+                        <span class="faq-item__title">Строительство и инфраструктура</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Управление крупными строительными проектами, BIM-технологии, контроль качества и сроков на всех этапах жизненного цикла объектов.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">03</span>
+                        <span class="faq-item__title">Логистика и транспорт</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Оптимизация цепочек поставок, маршрутизация, автоматизация складской логистики и управление транспортными потоками.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">04</span>
+                        <span class="faq-item__title">Промышленность и производство</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Цифровая трансформация производственных процессов, внедрение систем MES/ERP, предиктивное обслуживание оборудования.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">05</span>
+                        <span class="faq-item__title">Девелопмент и недвижимость</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Стратегическое планирование девелоперских проектов, управление портфелем недвижимости, аналитика рынка и инвестиционное моделирование.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">06</span>
+                        <span class="faq-item__title">Агропромышленный комплекс</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Модернизация аграрного сектора: precision farming, управление цепочками переработки и дистрибуции сельскохозяйственной продукции.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">07</span>
+                        <span class="faq-item__title">Наука, технологии и инновации</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Сопровождение R&D-проектов, трансфер технологий, создание инновационных экосистем и научно-технологических кластеров.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">08</span>
+                        <span class="faq-item__title">Экология и ресурсоэффективность</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">ESG-стратегии, экологический аудит, оптимизация ресурсопотребления и внедрение принципов циркулярной экономики.</div></div></div>
+            </div>
+
+        </div>
+        <a href="#contacts" class="btn-primary faq__btn-mobile">Получить Консультацию</a>
+    </section>
+</main>
+
+<script>
+(function(){
+    var menu=document.getElementById('mob-menu'),
+        open=document.getElementById('burger-open'),
+        close=document.getElementById('mob-close');
+    if(!menu||!open||!close)return;
+
+    function show(){menu.classList.add('--open');document.body.style.overflow='hidden'}
+    function hide(){menu.classList.remove('--open');document.body.style.overflow=''}
+
+    open.addEventListener('click',function(e){e.preventDefault();show()});
+    close.addEventListener('click',function(e){e.preventDefault();hide()});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')hide()});
+
+    for(var els=menu.querySelectorAll('[data-close]'),i=0;i<els.length;i++)
+        els[i].addEventListener('click',hide);
+
+    for(var trigs=document.querySelectorAll('.mob-accordion__trigger'),j=0;j<trigs.length;j++)
+        trigs[j].addEventListener('click',function(){
+            var body=this.nextElementSibling,isOpen=body.classList.contains('--open');
+            for(var b=document.querySelectorAll('.mob-accordion__body'),k=0;k<b.length;k++)b[k].classList.remove('--open');
+            for(var t=document.querySelectorAll('.mob-accordion__trigger'),m=0;m<t.length;m++)t[m].classList.remove('--expanded');
+            if(!isOpen){body.classList.add('--open');this.classList.add('--expanded')}
+        });
+})();
+</script>
+
+</body>
+</html>

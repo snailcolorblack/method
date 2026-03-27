@@ -1,84 +1,392 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>METHOD</title>
-    <!--    <script src="https://cdn.tailwindcss.com"></script>-->
     <link rel="stylesheet" href="./styles/core.css">
     <link rel="stylesheet" href="./styles/index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 </head>
-
 <body>
-<div class="container">
-    <header class="header">
-        <div class="logo">
-            <!--                <svg width="123" height="29" viewBox="0 0 123 29" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-            <!--                    <path d="M33.1365 28.9632H0.0625L16.5995 0.0742188L33.1365 28.9632Z" fill="#FF0000"/>-->
-            <!--                    <path d="M33.1365 28.9632H0.0625L16.5995 0.0742188L33.1365 28.9632Z" fill="black" fill-opacity="0.4"/>-->
-            <!--                    <path d="M16.6005 0L33.201 29L16.6005 22.2427L0 29L16.6005 0Z" fill="#FF0000"/>-->
-            <!--                    <path d="M16.6005 0L33.201 29L16.6005 22.2427L0 29L16.6005 0Z" fill="black" fill-opacity="0.3"/>-->
-            <!--                    <path d="M33.2021 29L16.6016 10.9741V0L33.2021 29Z" fill="#D90000"/>-->
-            <!--                    <path d="M16.6005 22.2427L0 29L16.6005 0V22.2427Z" fill="#FF0000"/>-->
-            <!--                    <path d="M16.6005 22.2427L0 29L16.6005 0V22.2427Z" fill="black" fill-opacity="0.15"/>-->
-            <!--                    <path d="M16.6005 10.9741L0 29L16.6005 0V10.9741Z" fill="#FF0000"/>-->
-            <!--                    <path d="M37.0078 7.27858H40.7674L44.7385 16.9382H44.9076L48.8783 7.27858H52.6383V21.6558H49.6812V12.2981H49.5613L45.8298 21.5855H43.8163L40.0845 12.2628H39.9648V21.6558H37.0078V7.27858ZM55.15 21.6558V7.27858H64.8664V9.78483H58.1986V13.2106H64.3665V15.7168H58.1986V19.1496H64.8944V21.6558H55.15ZM66.7407 9.78483V7.27858H78.5835V9.78483H74.169V21.6558H71.1555V9.78483H66.7407ZM80.5338 21.6558V7.27858H83.5824V13.2106H89.7711V7.27858H92.813V21.6558H89.7711V15.7168H83.5824V21.6558H80.5338ZM108.577 14.4672C108.577 16.0349 108.279 17.3688 107.683 18.4686C107.092 19.5684 106.284 20.4084 105.261 20.9889C104.242 21.5645 103.097 21.8524 101.825 21.8524C100.544 21.8524 99.3937 21.5623 98.3752 20.9819C97.3563 20.4014 96.5515 19.5614 95.9601 18.4616C95.3687 17.3618 95.073 16.0304 95.073 14.4672C95.073 12.8995 95.3687 11.5656 95.9601 10.4658C96.5515 9.36596 97.3563 8.52821 98.3752 7.95254C99.3937 7.37209 100.544 7.08203 101.825 7.08203C103.097 7.08203 104.242 7.37209 105.261 7.95254C106.284 8.52821 107.092 9.36596 107.683 10.4658C108.279 11.5656 108.577 12.8995 108.577 14.4672ZM105.486 14.4672C105.486 13.4517 105.334 12.5951 105.029 11.898C104.728 11.2005 104.303 10.6716 103.754 10.3112C103.205 9.95087 102.562 9.77084 101.825 9.77084C101.088 9.77084 100.445 9.95087 99.8958 10.3112C99.3465 10.6716 98.9194 11.2005 98.6144 11.898C98.3139 12.5951 98.1637 13.4517 98.1637 14.4672C98.1637 15.4827 98.3139 16.3393 98.6144 17.0364C98.9194 17.7339 99.3465 18.2628 99.8958 18.6232C100.445 18.9835 101.088 19.1636 101.825 19.1636C102.562 19.1636 103.205 18.9835 103.754 18.6232C104.303 18.2628 104.728 17.7339 105.029 17.0364C105.334 16.3393 105.486 15.4827 105.486 14.4672ZM115.947 21.6558H110.835V7.27858H115.989C117.44 7.27858 118.688 7.56643 119.735 8.1421C120.782 8.71301 121.587 9.53454 122.15 10.6061C122.718 11.6779 123.002 12.9603 123.002 14.4532C123.002 15.9509 122.718 17.2378 122.15 18.3144C121.587 19.3906 120.777 20.2166 119.721 20.7923C118.67 21.368 117.411 21.6558 115.947 21.6558ZM113.884 19.0513H115.82C116.721 19.0513 117.479 18.8923 118.094 18.5739C118.714 18.2511 119.179 17.7527 119.488 17.0787C119.803 16.4 119.96 15.525 119.96 14.4532C119.96 13.3909 119.803 12.5226 119.488 11.8487C119.179 11.1747 118.716 10.6786 118.101 10.3605C117.486 10.0421 116.728 9.88312 115.827 9.88312H113.884V19.0513Z" fill="white"/>-->
-            <!--                </svg>-->
-        </div>
-        <nav class="header__navigation --desktop">
-            <a href="#" class="button">Главная</a>
+
+<header class="header">
+    <div class="container header__inner">
+
+        <a href="/" class="logo">
+            <svg width="123" height="29" viewBox="0 0 123 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M33.1365 28.9632H0.0625L16.5995 0.0742188L33.1365 28.9632Z" fill="#FF0000"/>
+                <path d="M33.1365 28.9632H0.0625L16.5995 0.0742188L33.1365 28.9632Z" fill="black" fill-opacity="0.4"/>
+                <path d="M16.6005 0L33.201 29L16.6005 22.2427L0 29L16.6005 0Z" fill="#FF0000"/>
+                <path d="M16.6005 0L33.201 29L16.6005 22.2427L0 29L16.6005 0Z" fill="black" fill-opacity="0.3"/>
+                <path d="M33.2021 29L16.6016 10.9741V0L33.2021 29Z" fill="#D90000"/>
+                <path d="M16.6005 22.2427L0 29L16.6005 0V22.2427Z" fill="#FF0000"/>
+                <path d="M16.6005 22.2427L0 29L16.6005 0V22.2427Z" fill="black" fill-opacity="0.15"/>
+                <path d="M16.6005 10.9741L0 29L16.6005 0V10.9741Z" fill="#FF0000"/>
+                <path d="M37.0078 7.27858H40.7674L44.7385 16.9382H44.9076L48.8783 7.27858H52.6383V21.6558H49.6812V12.2981H49.5613L45.8298 21.5855H43.8163L40.0845 12.2628H39.9648V21.6558H37.0078V7.27858ZM55.15 21.6558V7.27858H64.8664V9.78483H58.1986V13.2106H64.3665V15.7168H58.1986V19.1496H64.8944V21.6558H55.15ZM66.7407 9.78483V7.27858H78.5835V9.78483H74.169V21.6558H71.1555V9.78483H66.7407ZM80.5338 21.6558V7.27858H83.5824V13.2106H89.7711V7.27858H92.813V21.6558H89.7711V15.7168H83.5824V21.6558H80.5338ZM108.577 14.4672C108.577 16.0349 108.279 17.3688 107.683 18.4686C107.092 19.5684 106.284 20.4084 105.261 20.9889C104.242 21.5645 103.097 21.8524 101.825 21.8524C100.544 21.8524 99.3937 21.5623 98.3752 20.9819C97.3563 20.4014 96.5515 19.5614 95.9601 18.4616C95.3687 17.3618 95.073 16.0304 95.073 14.4672C95.073 12.8995 95.3687 11.5656 95.9601 10.4658C96.5515 9.36596 97.3563 8.52821 98.3752 7.95254C99.3937 7.37209 100.544 7.08203 101.825 7.08203C103.097 7.08203 104.242 7.37209 105.261 7.95254C106.284 8.52821 107.092 9.36596 107.683 10.4658C108.279 11.5656 108.577 12.8995 108.577 14.4672ZM105.486 14.4672C105.486 13.4517 105.334 12.5951 105.029 11.898C104.728 11.2005 104.303 10.6716 103.754 10.3112C103.205 9.95087 102.562 9.77084 101.825 9.77084C101.088 9.77084 100.445 9.95087 99.8958 10.3112C99.3465 10.6716 98.9194 11.2005 98.6144 11.898C98.3139 12.5951 98.1637 13.4517 98.1637 14.4672C98.1637 15.4827 98.3139 16.3393 98.6144 17.0364C98.9194 17.7339 99.3465 18.2628 99.8958 18.6232C100.445 18.9835 101.088 19.1636 101.825 19.1636C102.562 19.1636 103.205 18.9835 103.754 18.6232C104.303 18.2628 104.728 17.7339 105.029 17.0364C105.334 16.3393 105.486 15.4827 105.486 14.4672ZM115.947 21.6558H110.835V7.27858H115.989C117.44 7.27858 118.688 7.56643 119.735 8.1421C120.782 8.71301 121.587 9.53454 122.15 10.6061C122.718 11.6779 123.002 12.9603 123.002 14.4532C123.002 15.9509 122.718 17.2378 122.15 18.3144C121.587 19.3906 120.777 20.2166 119.721 20.7923C118.67 21.368 117.411 21.6558 115.947 21.6558ZM113.884 19.0513H115.82C116.721 19.0513 117.479 18.8923 118.094 18.5739C118.714 18.2511 119.179 17.7527 119.488 17.0787C119.803 16.4 119.96 15.525 119.96 14.4532C119.96 13.3909 119.803 12.5226 119.488 11.8487C119.179 11.1747 118.716 10.6786 118.101 10.3605C117.486 10.0421 116.729 9.88312 115.827 9.88312H113.884V19.0513Z" fill="white"/>
+            </svg>
+        </a>
+
+        <nav class="nav-desktop">
+            <a href="#" class="nav-btn">Главная</a>
+
             <div class="dropdown">
-                <button class="button">
-                    <span>О компании</span>
-                    <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <ul class="dropdown__menu">
-                    <li><a href="#1">Ссылка с номером 1</a></li>
-                    <li><a href="#2">Ссылка с номером 2</a></li>
-                    <li><a href="#3">Ссылка с номером 3</a></li>
-                </ul>
+                <div class="nav-btn">О компании <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">О компании</p>
+                    <a href="#" class="dropdown__link">О компании</a>
+                    <a href="#" class="dropdown__link">Наша команда</a>
+                    <a href="#" class="dropdown__link">История</a>
+                    <a href="#" class="dropdown__link">Партнёры</a>
+                    <a href="#" class="dropdown__link">Карьера</a>
+                </div>
             </div>
+
             <div class="dropdown">
-                <button class="button">
-                    <span>Услуги</span>
-                    <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <ul class="dropdown__menu">
-                    <li>Вариант меню в DD</li>
-                    <li>Вариант меню в DD</li>
-                    <li>Вариант меню в DD</li>
-                </ul>
+                <div class="nav-btn">Услуги <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Услуги</p>
+                    <a href="#" class="dropdown__link">Управление проектной деятельностью</a>
+                    <a href="#" class="dropdown__link">Стратегическое развитие и консалтинг</a>
+                    <a href="#" class="dropdown__link">Оптимизация корпоративных систем</a>
+                    <a href="#" class="dropdown__link">Маркетинг и развитие бренда</a>
+                    <a href="#" class="dropdown__link">Институциональное проектирование</a>
+                    <a href="#" class="dropdown__link">ИИ и аналитика данных</a>
+                    <a href="#" class="dropdown__link">Автоматизация и цифровая трансформация</a>
+                    <a href="#" class="dropdown__link">Управление продажами и коммерческая стратегия</a>
+                    <a href="#" class="dropdown__link">Интеграция технологических решений</a>
+                </div>
             </div>
+
             <div class="dropdown">
-                <button class="button">
-                    <span>Сектора экономики</span>
-                    <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                              stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <ul class="dropdown__menu">
-                    <li>Вариант меню в DD</li>
-                    <li>Вариант меню в DD</li>
-                    <li>Вариант меню в DD</li>
-                </ul>
+                <div class="nav-btn">Сектора экономики <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Сектора</p>
+                    <a href="#" class="dropdown__link">Энергетика</a>
+                    <a href="#" class="dropdown__link">Строительство и инфраструктура</a>
+                    <a href="#" class="dropdown__link">Логистика и транспорт</a>
+                    <a href="#" class="dropdown__link">Промышленность и переработка</a>
+                    <a href="#" class="dropdown__link">Девелопмент и недвижимость</a>
+                    <a href="#" class="dropdown__link">Агропромышленный комплекс</a>
+                    <a href="#" class="dropdown__link">Наука, технологии и инновации</a>
+                    <a href="#" class="dropdown__link">Экология и ресурсоэффективность</a>
+                </div>
             </div>
         </nav>
-        <div></div>
-    </header>
 
+        <div class="header__right">
+            <div class="dropdown --lang">
+                <div class="nav-btn">
+                    <svg width="19" height="19" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8.3" stroke="currentColor" stroke-width="1.3"/><ellipse cx="10" cy="10" rx="3.1" ry="8.3" stroke="currentColor" stroke-width="1.3"/><path d="M1.7 7h16.6M1.7 13h16.6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                    <span>Ру</span>
+                    <svg class="chev" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 5.25L7 8.75L10.5 5.25" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="dropdown__panel">
+                    <p class="dropdown__title">Язык</p>
+                    <a href="#" class="dropdown__link --active">Русский</a>
+                    <a href="#" class="dropdown__link">English</a>
+                    <a href="#" class="dropdown__link">Қазақша</a>
+                </div>
+            </div>
+            <a href="#contacts" class="btn-contacts">Контакты</a>
+            <button class="burger" id="burger-open" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+        </div>
 
+    </div>
+</header>
 
+<div class="mob-menu" id="mob-menu" role="dialog" aria-modal="true" aria-label="Навигация">
+    <div class="mob-menu__top">
+        <a href="/" class="logo"><svg width="22" height="19" viewBox="0 0 22 19" fill="none"><path d="M11 0L21.5 18.5H0.5L11 0Z" fill="#E63329"/></svg><span class="logo__text" style="font-size:15px">METHOD</span></a>
+        <button class="mob-close" id="mob-close" aria-label="Закрыть меню"><svg width="18" height="18" viewBox="0 0 16 16" fill="none"><path d="M4 4L12 12M12 4L4 12" stroke="rgba(255,255,255,.7)" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+    <nav class="mob-menu__nav">
+        <a href="#" class="mob-nav-link" data-close>Главная</a>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">О компании <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>О компании</a><a href="#" class="mob-sub-link" data-close>Наша команда</a><a href="#" class="mob-sub-link" data-close>История</a><a href="#" class="mob-sub-link" data-close>Партнёры</a><a href="#" class="mob-sub-link" data-close>Карьера</a>
+            </div>
+        </div>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">Услуги <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>Управление проектами</a><a href="#" class="mob-sub-link" data-close>Стратегический консалтинг</a><a href="#" class="mob-sub-link" data-close>Оптимизация систем</a><a href="#" class="mob-sub-link" data-close>Маркетинг и бренд</a><a href="#" class="mob-sub-link" data-close>Институциональное проектирование</a><a href="#" class="mob-sub-link" data-close>ИИ и аналитика данных</a><a href="#" class="mob-sub-link" data-close>Цифровая трансформация</a><a href="#" class="mob-sub-link" data-close>Управление продажами</a><a href="#" class="mob-sub-link" data-close>Интеграция решений</a>
+            </div>
+        </div>
+        <div class="mob-accordion">
+            <button class="mob-nav-link mob-accordion__trigger">Сектора экономики <svg class="chev" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="mob-accordion__body">
+                <a href="#" class="mob-sub-link" data-close>Энергетика</a><a href="#" class="mob-sub-link" data-close>Строительство и инфраструктура</a><a href="#" class="mob-sub-link" data-close>Логистика и транспорт</a><a href="#" class="mob-sub-link" data-close>Промышленность</a><a href="#" class="mob-sub-link" data-close>Девелопмент и недвижимость</a><a href="#" class="mob-sub-link" data-close>Агропромышленный комплекс</a><a href="#" class="mob-sub-link" data-close>Наука и инновации</a><a href="#" class="mob-sub-link" data-close>Экология</a>
+            </div>
+        </div>
+    </nav>
+    <div class="mob-menu__bottom">
+        <a href="#contacts" class="mob-cta-contacts" data-close>Контакты</a>
+        <a href="#contacts" class="mob-cta-consult" data-close>Получить консультацию</a>
+    </div>
 </div>
+
+<main>
+
+    <!-- ═══════════════════════════════════════════
+        HERO SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+        <div class="container hero__text">
+            <h1 class="text-64 text-grad-h">Корпоративные<br>решения нового уровня</h1>
+            <p class="text-body">Интегрируем стратегию, данные и технологии в единую модель управления</p>
+            <div class="hero__actions">
+                <a href="#contacts" class="hero__btn-primary">Обсудить Проект</a>
+                <a href="#about" class="hero__btn-secondary">О Компании <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14 5l7 7-7 7M5 12h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+            </div>
+        </div>
+        <div class="hero__visual">
+            <picture>
+                <source media="(max-width: 767px)" srcset="./assets/hero_m.png"/>
+                <source media="(min-width: 768px)" srcset="./assets/hero.png"/>
+                <img src="./assets/hero.png" alt="Method — корпоративные решения" class="hero__img"/>
+            </picture>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        STATS SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="container stats" id="stats">
+        <div class="stats__item"><span class="text-big text-grad-v">562</span><span class="text-sm stats__label">Цифровых платформ внедрено</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">993</span><span class="text-sm stats__label">Реализованных проекта</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">97%</span><span class="text-sm stats__label">Успешных внедрений</span></div>
+        <div class="stats__item"><span class="text-big text-grad-v">36</span><span class="text-sm stats__label">Стран присутствия</span></div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        MAP SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="map" id="map">
+        <!--        <picture>-->
+        <!--            <source srcset="./assets/map.svg"/>-->
+        <!--            <img src="./assets/map.svg" class="map__img"/>-->
+        <!--        </picture>-->
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+        WHY SECTION
+    ═══════════════════════════════════════════ -->
+    <section class="container why" id="why">
+        <div class="why__card">
+            <div class="why-card__header">
+                <span class="why-card__title">Workflow</span>
+                <span class="why-card__badge"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M8 3l4 4M8 3L4 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>11.5%</span>
+            </div>
+            <div>
+                <div class="why-card__number">3593</div>
+                <p class="text-sm why-card__subtitle">Бизнес-процессов оптимизировано</p>
+            </div>
+            <img src="./assets/graph.svg" alt="" class="why-card__chart"/>
+            <div class="why-card__labels">
+                <div class="why-card__label"><span class="why-card__label-name">Анализ</span><span class="why-card__label-time">1 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Стратегия</span><span class="why-card__label-time">1 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Запуск</span><span class="why-card__label-time">4 мес</span></div>
+                <div class="why-card__label"><span class="why-card__label-name">Развитие</span><span class="why-card__label-time">6 мес</span></div>
+            </div>
+        </div>
+        <div class="why__content">
+            <h2 class="text-40">Почему Method?</h2>
+            <p class="text-body why__desc">Мы интегратор корпоративных решений, специализирующийся на проектном управлении и стратегическом развитии. Создаём интеллектуальные модели, которые комплексно оптимизируют бизнес — от институциональной архитектуры до операционного управления и эффективности.</p>
+            <a href="#" class="btn-primary why__btn">Подробнее</a>
+        </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════
+        PRODUCTS SECTION
+   ═══════════════════════════════════════════ -->
+    <section class="container products" id="products">
+        <h2 class="text-40 text-grad-h">Ключевые услуги</h2>
+        <div class="products__grid">
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">01</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Управление проектной деятельностью</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/01.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">02</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Стратегическое развитие и консалтинг</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/02.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">03</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Оптимизация корпоративных систем</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/03.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">04</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Маркетинг и развитие бренда</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/04.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">05</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Институциональное проектирование</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/05.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">06</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Искусственный интеллект и аналитика данных</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/06.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">07</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Корпоративное управление и экспертиза</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/07.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">08</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Автоматизация, цифровая трансформация и инновации</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/08.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">09</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Управление продажами и коммерческая стратегия</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/09.svg" alt=""/></div>
+            </div>
+            <div class="product-card">
+                <div class="product-card__header">
+                    <div class="product-card__info"><span class="product-card__num">10</span><svg class="product-card__icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                    <span class="product-card__title">Интеграция технологических решений</span>
+                </div>
+                <div class="product-card__img"><img src="./assets/products/10.svg" alt=""/></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+        FAQ / SECTORS SECTION
+   ═══════════════════════════════════════════ -->
+    <section class="container faq" id="sectors">
+
+        <div class="faq__header">
+            <div class="faq__header-text">
+                <span class="faq__subtitle">Решения для отраслей</span>
+                <h2 class="text-40">Сектора экономики</h2>
+            </div>
+            <a href="#contacts" class="btn-primary">Получить Консультацию</a>
+        </div>
+
+        <div class="faq__list">
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">01</span>
+                        <span class="faq-item__title">Энергетика</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Оптимизация процессов в энергетическом секторе: от генерации до распределения. Внедрение цифровых решений для повышения эффективности и устойчивости.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">02</span>
+                        <span class="faq-item__title">Строительство и инфраструктура</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Управление крупными строительными проектами, BIM-технологии, контроль качества и сроков на всех этапах жизненного цикла объектов.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">03</span>
+                        <span class="faq-item__title">Логистика и транспорт</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Оптимизация цепочек поставок, маршрутизация, автоматизация складской логистики и управление транспортными потоками.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">04</span>
+                        <span class="faq-item__title">Промышленность и производство</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Цифровая трансформация производственных процессов, внедрение систем MES/ERP, предиктивное обслуживание оборудования.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">05</span>
+                        <span class="faq-item__title">Девелопмент и недвижимость</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Стратегическое планирование девелоперских проектов, управление портфелем недвижимости, аналитика рынка и инвестиционное моделирование.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">06</span>
+                        <span class="faq-item__title">Агропромышленный комплекс</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Модернизация аграрного сектора: precision farming, управление цепочками переработки и дистрибуции сельскохозяйственной продукции.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">07</span>
+                        <span class="faq-item__title">Наука, технологии и инновации</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">Сопровождение R&D-проектов, трансфер технологий, создание инновационных экосистем и научно-технологических кластеров.</div></div></div>
+            </div>
+
+            <div class="faq-item">
+                <details name='faq'>
+                    <summary>
+                        <span class="faq-item__num">08</span>
+                        <span class="faq-item__title">Экология и ресурсоэффективность</span>
+                        <svg class="faq-item__icon" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    </summary>
+                </details>
+                <div class="faq-item__body"><div class="faq-item__body-inner"><div class="faq-item__content">ESG-стратегии, экологический аудит, оптимизация ресурсопотребления и внедрение принципов циркулярной экономики.</div></div></div>
+            </div>
+
+        </div>
+        <a href="#contacts" class="btn-primary faq__btn-mobile">Получить Консультацию</a>
+    </section>
+</main>
 </body>
 
-<script src="./scripts/header.js"></script>
+<script src="./scripts/core.js"></script>
 </html>
